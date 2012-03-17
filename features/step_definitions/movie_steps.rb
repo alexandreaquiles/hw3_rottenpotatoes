@@ -4,13 +4,8 @@ Given /the following movies exist/ do |movies_table|
   end
 end
 
-# Make sure that one string (regexp) occurs before or after another one
-#   on the same page
-
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
-  #  ensure that that e1 occurs before e2.
-  #  page.content  is the entire content of the page as a string.
-  assert false, "Unimplmemented"
+    assert page.body =~ /.*#{e1}.*#{e2}/m
 end
 
 Then /I should (not )?see the movies: (.*)/ do |_not, movie_list|
