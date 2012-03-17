@@ -22,11 +22,18 @@ Background: movies have been added to database
   And  I am on the RottenPotatoes home page
   
 Scenario: restrict to movies with 'PG' or 'R' ratings
-  # enter step(s) to check the 'PG' and 'R' checkboxes
-  # enter step(s) to uncheck all other checkboxes
-  # enter step to "submit" the search form on the homepage
+  When I check "ratings_PG"
+  And I check "ratings_R"
+  And I uncheck "ratings_G"
+  And I uncheck "ratings_PG-13"
+  And I uncheck "ratings_NC-17"
+  And I press "Refresh"
   # enter step(s) to ensure that PG and R movies are visible
   # enter step(s) to ensure that other movies are not visible
+  
+#  You can use existing step definitions in web_steps.rb to check and uncheck the appropriate
+#boxes, submit the form, and check whether the correct movies appear (and just as importantly,
+#movies with unselected ratings do not appear).
 
 Scenario: no ratings selected
   # see assignment
