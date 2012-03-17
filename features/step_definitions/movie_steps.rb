@@ -13,12 +13,18 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   assert false, "Unimplmemented"
 end
 
-# Make it easier to express checking or unchecking several boxes at once
-#  "When I uncheck the following ratings: PG, G, R"
-#  "When I check the following ratings: G"
+Then /I should (not )?see the movies: (.*)/ do |_not, movie_list|
+  movie_list.split(", ").each do |movie|
+    step %{I should #{_not}see "#{movie}"}
+  end
+end
 
-When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
-  # HINT: use String#split to split up the rating_list, then
-  #   iterate over the ratings and reuse the "When I check..." or
-  #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
+When /I (un)?check the following ratings: (.*)/ do |un, rating_list|
+  rating_list.split(", ").each do |rating|
+    step %{I #{un}check "ratings_#{rating}"}
+  end
+end
+
+When /I (un)?check all the ratings/ do |un|
+  step %{I #{un}check the following ratings: PG, R, G, PG-13, NC-17}
 end
