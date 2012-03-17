@@ -28,13 +28,20 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   And I uncheck "ratings_PG-13"
   And I uncheck "ratings_NC-17"
   And I press "Refresh"
+  Then I should not see "Aladdin"
+  And I should not see "The Help" 
+  And I should not see "Chocolat" 
+  And I should not see "2001: A Space Odyssey" 
+  And I should not see "Chicken Run" 
+  And I should see "The Terminator"
+  And I should see "When Harry Met Sally" 
+  And I should see "Amelie" 
+  And I should see "The Incredibles" 
+  And I should see "Raiders of the Lost Ark" 
+  
   # enter step(s) to ensure that PG and R movies are visible
   # enter step(s) to ensure that other movies are not visible
   
-#  You can use existing step definitions in web_steps.rb to check and uncheck the appropriate
-#boxes, submit the form, and check whether the correct movies appear (and just as importantly,
-#movies with unselected ratings do not appear).
-
 Scenario: no ratings selected
   # see assignment
 
